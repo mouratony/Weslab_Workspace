@@ -8,11 +8,12 @@ RUN apt-get update && \
         libhdf5-dev && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
+SHELL ["bash", "-lc"]
+
 WORKDIR /app
 
-# Copy your environment specification and create the environment
 COPY environment.yml .
-RUN conda env create -f environment.yml
+RUN conda env create -f environment.yml && \
+    echo "conda activate wesl_tony_env" >> /root/.bashrc
 
-ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "wesl_tony_env"]
 CMD ["bash"]
