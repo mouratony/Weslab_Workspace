@@ -10,7 +10,7 @@ RUN apt-get update && \
 
 SHELL ["bash", "-lc"]
 
-WORKDIR /app
+WORKDIR /wesl_workspace
 
 COPY environment.yml .
 RUN conda env create -f environment.yml && \
